@@ -51,8 +51,9 @@ class TypeDefsCollector {
     definitionsAst: DocumentNode,
     schemaAst: DocumentNode,
   ) {
+    const objectTypeDefinitions = schemaAst.definitions.filter(o => o.kind == 'ObjectTypeDefinition');
     const schemaMap: DefinitionMap = _.keyBy(
-      schemaAst.definitions,
+      objectTypeDefinitions,
       (d: any) => d.name.value as string,
     )
     definitionsAst.definitions.forEach(def =>
